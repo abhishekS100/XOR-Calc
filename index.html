@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calculate the exclusive or (XOR) with a simple web-based calculator. Input and output in binary, decimal, hexadecimal or ASCII."
+    />
+    <link rel="icon" href="//xor.pw/favicon.ico" type="image/x-icon" />
+
+    <title>XOR Calculator Online</title>
+
+     <link rel="stylesheet" href="style.css">
+    
+     <script src="xor.js"></script>
+
+  </head>
+
+
+
+  <body>
+
+    <h1>XOR Calculator</h1>
+    <p>Provide two inputs, select input and output types, then Calculate XOR</p>
+    <form action="#" method="post">
+      <div>
+        <label for="v1">I. Input</label>:
+        <select name="type1" title="Data type of input 1" class="t">
+          <option value="2">binary (base 2)</option>
+          <option value="10">decimal (base 10)</option>
+          <option value="16" selected="selected">hexadecimal (base 16)</option>
+          <option value="256">ASCII (base 256)</option>
+        </select>
+        <textarea
+          name="v1"
+          id="v1"
+          class="v"
+          style="height: 2.5rem"
+          placeholder="first input"
+          autofocus="autofocus"
+        ></textarea
+        ><br /><br />
+
+        <label for="v2">II. Input</label>:
+        <select name="type2" title="Data type of input 2" class="t">
+          <option value="2">binary (base 2)</option>
+          <option value="10">decimal (base 10)</option>
+          <option value="16" selected="selected">hexadecimal (base 16)</option>
+          <option value="256">ASCII (base 256)</option>
+        </select>
+        <textarea
+          name="v2"
+          id="v2"
+          class="v"
+          style="height: 2.5rem"
+          placeholder="second input"
+        ></textarea>
+
+        <br /><br /><button
+          type="submit"
+          title="Calculate (Input I) XOR (Input II)"
+          id="xor"
+        >
+          Calculate XOR</button
+        ><br /><br />
+
+        <label for="v3">III. Output</label>:
+        <select name="type3" title="Data type of the output" class="t">
+          <option value="2">binary (base 2)</option>
+          <option value="10">decimal (base 10)</option>
+          <option value="16" selected="selected">hexadecimal (base 16)</option>
+          <option value="256">ASCII (base 256)</option>
+        </select>
+        <textarea
+          name="v3"
+          class="v"
+          readonly="readonly"
+          id="v3"
+          style="height: 2.5rem"
+        ></textarea>
+      </div>
+    </form>
+    <aside>
+      <p>
+        The form calculates the bitwise exclusive or using the function gmp_xor.
+        At the bit level, there are four possibilities, <br />0
+        <abbr title="XOR">&#8853;</abbr> 0 = 0 <br />0
+        <abbr title="XOR">&#8853;</abbr> 1 = 1 <br />1
+        <abbr title="XOR">&#8853;</abbr> 0 = 1 <br />1
+        <abbr title="XOR">&#8853;</abbr> 1 = 0<br />Non-binary inputs are
+        converted into their binary equivalents using gmp_init. View the
+        <a href="https://xor.pw/help/">help</a> page for more information.
+      </p>
+    </aside>
+    <nav>
+      <ul>
+        <li><a href="//xor.pw/">Home</a></li>
+        <li><a href="//xor.pw/help/">Help</a></li>
+        <li><a href="//xor.pw/help/#privacy">Privacy</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

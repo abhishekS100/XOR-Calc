@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>XOR Calculator Help</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="help.css">
+    <link rel="icon" href="//xor.pw/favicon.ico" type="image/x-icon" />
+
+  </head>
+
+  <body>
+
+    <header>
+      <h1>XOR Calculator Help</h1>
+      <a href="//xor.pw/" id="homelink">Use the XOR calculator</a>
+    </header>
+    <article id="holder">
+      <h2>This Calculator</h2>
+      <ul>
+        <li><a href="#howdoesthiswork">How does this calculator work?</a></li>
+        <li>
+          <a href="#specifiedtype">Why does the input need a specified type?</a>
+        </li>
+        <li><a href="#allowedtypes">What are the allowed types?</a></li>
+        <li>
+          <a href="#largeinputs">Can the calculator handle large input?</a>
+        </li>
+        <li><a href="#privacy">What is the privacy policy?</a></li>
+      </ul>
+      <h2>General Issues</h2>
+      <ul>
+        <li><a href="#whatisxor">What is XOR?</a></li>
+        <li><a href="#relatedfs">What are related bitwise functions?</a></li>
+      </ul>
+      <h3 id="howdoesthiswork">How does this calculator work?</h3>
+      <p>
+        The calculator uses the GNU Multiple Precision (GMP) extension in PHP to
+        calculate the bitwise XOR. The function
+        <a href="http://us3.php.net/manual/en/function.gmp-xor.php">gmp_xor</a>
+        takes two GMP resources as inputs and outputs a GMP resource. The
+        calculator can process different types (base 2, 10, 16) and are
+        initialized using the
+        <a href="http://us3.php.net/manual/en/function.gmp-init.php"
+          >gmp_init</a
+        >
+        function. Since gmp_init does not support base 256, the calculator
+        converts ASCII inputs into and out of hexadecimal prior to
+        initialization.
+      </p>
+
+      <h3 id="specifiedtype">Why does the input need a specified type?</h3>
+      <p>
+        To reduce the extra steps of users converting inputs to a specific type,
+        the calculator allows users to input and output as binary, decimal,
+        hexadecimal or ASCII. The consequence of this is that the calculator
+        needs to know the types of the inputs in order to accurately calculate
+        the output.
+      </p>
+      <p>
+        For example, the input of <em>10</em> without a type could be several
+        values. In binary, <em>10</em> would be equal to 2 in decimal. In
+        hexadecimal, <em>10</em> would be equal to 16 in decimal and in ASCII,
+        <em>10</em> could be equal to 12592 in decimal.
+      </p>
+
+      <h3 id="allowedtypes">What are the allowed types?</h3>
+      <p>
+        There are ASCII characters that cannot be displayed correctly in html.
+        Therefore, ASCII is not a realiable type for abitrary output values.
+      </p>
+      <ul>
+        <li>Binary: {0, 1}</li>
+        <li>Decimal: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</li>
+        <li>Hexadecimal: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e, f}</li>
+        <li>
+          ASCII: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e, f, g, h, i, j, k,
+          l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H,
+          I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, {, |, }, ~, !,
+          ", #, $, %, &amp;, ', (, ), *, +, ,, -, ., /, :, ;, &lt;, =, &gt;, ?,
+          @} 256 character in total, which includes control and extended
+          characters that are not displayed.
+          <a
+            href="https://en.wikipedia.org/wiki/Extended_ASCII#/media/File:Table_ascii_extended.png"
+            >view Extended ASCII table</a
+          >
+        </li>
+      </ul>
+      <p>
+        A warning message will appear if you output in ASCII and there are
+        character the calculator cannot display. Select another output type,
+        such as hexadecimal, to avoid this problem.
+      </p>
+      <h3 id="largeinputs">Can the calculator handle large inputs?</h3>
+      <p>
+        Yes, although an early version of this calculator used the built-in XOR
+        bitwise operator in PHP. This meant that inputs and outputs were limited
+        to signed 64-bit integers (2^64/2 or 9,223,372,036,854,775,808). The
+        current implementation uses the GMP extension that is able to handle
+        much larger inputs. The limiting factor will be the size of the POST
+        data to the calculator.
+      </p>
+      <h3 id="privacy">Privacy Policy</h3>
+      <p>
+        This site does not use cookies and does not have third-party content.
+        The site automatically logs all requests and uses tools to track usage
+        and find errors. This data is stored on the server without encryption.
+        In addition, since this site does not use SSL/TLS (i.e. https), the
+        calculator inputs and outputs travel across networks in plaintext and
+        are not secure.
+      </p>
+      <p>Updated (Dec. 10, 2014): now with optional https support.</p>
+      <h3 id="whatisxor">What Is XOR?</h3>
+      <p>
+        XOR &quot;exclusive or&quot; is a bitwise (and logical) operation that
+        outputs 1 (true) if the two inputs are not the same and outputs 0
+        (false) if the two inputs are the same. With the XOR calculator, this
+        operation occurs at each bit. For example:
+      </p>
+      <table>
+        <caption>
+          Bitwise XOR
+        </caption>
+        <tr>
+          <th>Input I</th>
+          <th>Input II</th>
+          <th>Output</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+      </table>
+      <p>
+        To demonstrate how XOR works with the calculator, try setting inputs and
+        output to binary.
+      </p>
+      <h3 id="relatedfs">What are related functions?</h3>
+      <p>Other bitwise operations include: AND, OR, NOT</p>
+      <table>
+        <caption>
+          Bitwise AND
+        </caption>
+        <tr>
+          <th>Input I</th>
+          <th>Input II</th>
+          <th>Output</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+      </table>
+      <table>
+        <caption>
+          Bitwise OR
+        </caption>
+        <tr>
+          <th>Input I</th>
+          <th>Input II</th>
+          <th>Output</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+      </table>
+      <table>
+        <caption>
+          Bitwise NOT
+        </caption>
+        <tr>
+          <th>Input</th>
+          <th>Output</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </article>
+    <nav>
+      <a href="//xor.pw/">Home</a> | <a href="//xor.pw/help/">Help</a> |
+      <a href="//xor.pw/help/#privacy">Privacy</a>
+    </nav>
+    <p style="height: 50em"></p>
+  
+ </body>
+</html>
